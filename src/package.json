@@ -1,0 +1,22 @@
+{
+  "name": "discord-bot-create-k8s",
+  "version": "1.0.0",
+  "description": "api for discord bot to use to create microk8s instances",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "promise": "^8.1.0",
+    "swagger-jsdoc": "^6.2.0",
+    "swagger-ui-express": "^4.3.0",
+    "validator": "^13.7.0"
+  }
+}
