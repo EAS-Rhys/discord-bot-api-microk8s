@@ -1,13 +1,13 @@
 /**
  * @openapi
- * /api/validate:
+ * /api/validate/{command}:
  *  get:
  *    description: Validate the bot command being used with this API
  *    produces:
  *     - application/json
  *    parameters:
  *     - name: command
- *       in: param
+ *       in: path
  *       required: true
  *       type: string    
  *    responses:
