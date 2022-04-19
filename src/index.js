@@ -4,6 +4,18 @@ const fs = require("fs");
 const path = require("path");
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const db = require('./models/db');
+
+// Test connectivity and migrate models
+(async function(){ 
+try {
+  await db.sequelize.authenticate();
+  console.log('Connection has been established successfully.');
+  await db.sequelize.sync({force: false})
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
+})()
 
 const options = {
   definition: {
@@ -59,3 +71,5 @@ fs.readdirSync(path.join(__dirname, "routes")).forEach(function(file) {
 // Start listening
 console.debug("Listening on port 8080")
 app.listen(8080);
+
+//sequelize.close()
