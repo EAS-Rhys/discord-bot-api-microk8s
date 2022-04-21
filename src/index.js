@@ -6,6 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const db = require('./models/db');
 
+
 // Test connectivity and migrate models
 (async function(){ 
 try {
