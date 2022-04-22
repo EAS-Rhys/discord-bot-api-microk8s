@@ -1,7 +1,7 @@
 // Bot API action constants
 module.exports = Object.freeze({
   identifier: "microk8s",
-  actions: ["actions","create","list","details","delete","power_on","power_off"],
+  actions: ["owner","actions","create","list","details","delete","power_on","power_off"],
   schema: {
     create: {
       arg_count: 1,
@@ -14,6 +14,14 @@ module.exports = Object.freeze({
           pattern: "alphanumeric"
         }
       ]
+    },
+    owner: {
+      arg_count: 0,
+      args:[]
+    },
+    actions: {
+      arg_count: 0,
+      args:[]
     },
     list: {
       arg_count: 0,

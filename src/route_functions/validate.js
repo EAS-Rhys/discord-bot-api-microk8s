@@ -30,22 +30,22 @@ exports.func = req => {
 
     // Validate action is valid for this bot api
     if (!spec.actions.includes(req_action)) {
-      reject({ status: "error", status_message: "invalid_action", discord_message: req_action + " isn't a valid action. \n Valid actions are: \n " + spec.actions.join("\n") })
+      reject({ status: "error", status_message: "invalid_action", discord_message: "\n *" + req_action + "* isn't a valid action. \n Valid actions are: \n *" + spec.actions.join("*\n") })
     }
 
     // Validate action has required parameters
     for(i=0;i<spec.schema[req_action].args.length;i++){
       let arg_spec
-      arg_spec = "Name: " + spec.schema[req_action].args[i].name + " \n Required format: \n !" + req_identifier + " " + req_action + " <parameter> \n Requirements for parameter: \n"
+      arg_spec = "**Name:** " + spec.schema[req_action].args[i].name + " \n**Required format:** !" + req_identifier + " " + req_action + " <parameter> \n**Requirements for parameter:** \n"
       for (const [key, value] of Object.entries(spec.schema[req_action].args[i])) {
-        arg_spec += key + " : " + value + "\n" ;
+        arg_spec += "**"+key+"**" + " : " + value + "\n" ;
       }
       if(!params[i+2]){
         
-        reject({ status: "error", status_message: "missing_required_parameter", discord_message: "Missing required parameter. \n" + arg_spec})
+        reject({ status: "error", status_message: "missing_required_parameter", discord_message: "\n **Missing required parameter.** \n\n" + arg_spec})
       } else{
         if(params[i+2].length < spec.schema[req_action].args[i].min || params[i+2].length > spec.schema[req_action].args[i].max || !validator.isAlphanumeric(params[i+2].trim())){
-          reject({ status: "error", status_message: "invalid_format_required_parameter", discord_message: "Parameter not in required format. \n" + arg_spec})
+          reject({ status: "error", status_message: "invalid_format_required_parameter", discord_message: "\n Parameter not in required format. \n" + arg_spec})
         }
       }
     }

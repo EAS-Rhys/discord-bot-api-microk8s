@@ -12,10 +12,11 @@ var base = {
 
 module.exports = {
   name: "create",
-  default: (cmd) => {
+  default: (req,cmd) => {
     return new Promise((resolve, reject) => {
 
-    console.log("create");
+      resolve({status: "success", status_message: "action_pending", discord_message: "\n Create it yourself you lazy bastard"})
+
     })
   }
 }

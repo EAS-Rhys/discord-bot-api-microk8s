@@ -9,7 +9,6 @@ exports.func = req => {
     if (req.params.command.length < 1) {
       reject({ status: "error", status_message: "invalid command structure" })
     }
-console.log("hit")
     // Convert comma delimited command structure to an array
     let params = req.params.command.split(",");
     let req_identifier
@@ -22,8 +21,6 @@ console.log("hit")
       reject({ status: "error", status_message: "insufficient_parameters" })
     }
 
-
-    console.log("hit")
 
     // Import all actions.
     var actions = {}
@@ -40,12 +37,12 @@ console.log("hit")
     console.log(actions);
 
     try {
-      actions[req_action].default(params).then(result => {
+      actions[req_action].default(req,params).then(result => {
         resolve(result);
       })
     } catch (err) {
       console.log(req_action, " FAILED", err)
-      reject({ status: "error", status_message: "error_invoking_action" })
+      reject({ status: "error", status_message: "error_invoking_action", discord_message: "\n **Action:** " + req_action + " has not yet been implemented, please contact the API owner." })
     }
 
 

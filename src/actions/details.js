@@ -1,6 +1,6 @@
 module.exports = {
   name: "details",
-  default: (cmd) => {
+  default: (req,cmd) => {
     return new Promise((resolve, reject) => {
       var instance = cmd[2]
       

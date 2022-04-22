@@ -3,13 +3,13 @@ const vcenter = require("../utils/vcenter");
 
 module.exports = {
   name: "list",
-  default: (cmd) => {
+  default: (req,cmd) => {
     return new Promise((resolve, reject) => {
       console.log("Executing list");
       listVM().then(result => {
-        var discord_response = "";
+        var discord_response = "\n **Virtual Machines:** \n\n";
         result.map(vm=>{
-          discord_response += vm.name + ": " + "CPU: " + vm.cpu_count + ", Memory: " + vm.memory_size_MiB + ", State: " + vm.power_state + "\n"
+          discord_response += ":desktop:   **" + vm.name + "** " + "\n\t\t\tCPU: " + vm.cpu_count + ", Memory: " + vm.memory_size_MiB + ", State: " + vm.power_state + "\n"
         })
         resolve({ status: "success", status_message: "vm_list_retrieved", discord_message: discord_response, lock: false})
       }).catch(err=>{
